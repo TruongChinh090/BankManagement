@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.dcna.springboot.bankmanagement.dao.CustomerDAO;
 import com.dcna.springboot.bankmanagement.entity.Customer;
+import com.dcna.springboot.bankmanagement.service.CustomerService;
 
 /**
  * @author TruongChinh
@@ -21,15 +21,15 @@ import com.dcna.springboot.bankmanagement.entity.Customer;
 @RequestMapping("/api")
 public class CustomerRestController {
 	
-	private CustomerDAO customerDAO;
+	private CustomerService customerService;
 
 	/**
-	 * Injection ConstomerDAO
-	 * @param customerDAO
+	 * Injection CustomerService
+	 * @param customerService
 	 */
 	@Autowired
-	public CustomerRestController(CustomerDAO customerDAO) {
-		this.customerDAO = customerDAO;
+	public CustomerRestController(CustomerService customerService) {
+		this.customerService = customerService;
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public class CustomerRestController {
 	 */
 	@GetMapping("/customers")
 	public List<Customer> findAllCustomers(){
-		return customerDAO.findAllCustomers();
+		return customerService.findAllCustomers();
 	}
 	
 	

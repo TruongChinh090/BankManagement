@@ -33,20 +33,46 @@ public class CustomerDAOImpl implements CustomerDAO {
 	
 	
 	@Override
-	@Transactional // add transaction to handles transaction management so we don't have to manually start and commit transaction
 	public List<Customer> findAllCustomers() {
 		
 		// get the current hibernate session
 		Session currentSession = entityManager.unwrap(Session.class);
-		
 		// create a query using native Hibernate API
 		Query<Customer> theQuery = currentSession.createQuery("from Customer", Customer.class);
-		
 		// execute the query and get result list
 		List<Customer> customers = theQuery.getResultList();
-		
 		// return result list
 		return customers;
+	}
+
+
+	@Override
+	public Customer findCustomerById(long customerId) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		// get the customer by Id
+		Customer theCustomer = currentSession.get(Customer.class, customerId);
+		return theCustomer;
+	}
+
+
+	@Override
+	public void saveCustomer(Customer customer) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		// save customer
+		currentSession.saveOrUpdate(customer);
+	}
+
+
+	@Override
+	public void deleteCustomerById(long customerId) {
+		// get the current hibernate session
+		Session currentSession = entityManager.unwrap(Session.class);
+		Query theQuery = currentSession.createQuery("delete from Customer where customerId =: customerId");
+		theQuery.setParameter("customerId", customerId);
+		theQuery.executeUpdate();
+		
 	}
 
 }

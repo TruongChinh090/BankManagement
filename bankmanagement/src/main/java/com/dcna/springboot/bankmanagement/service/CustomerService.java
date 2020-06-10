@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.dcna.springboot.bankmanagement.dao;
+package com.dcna.springboot.bankmanagement.service;
 
 import java.util.List;
 
@@ -11,9 +11,9 @@ import com.dcna.springboot.bankmanagement.entity.Customer;
  * @author TruongChinh
  *
  */
-public interface CustomerDAO {
+public interface CustomerService {
 	
-	List<Customer> findAllCustomers();
+List<Customer> findAllCustomers();
 	
 	Customer findCustomerById(long customerId);
 	
