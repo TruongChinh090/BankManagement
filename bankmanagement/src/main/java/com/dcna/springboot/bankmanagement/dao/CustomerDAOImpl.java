@@ -11,7 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.dcna.springboot.bankmanagement.entity.Customer;
 
@@ -65,6 +64,7 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void deleteCustomerById(long customerId) {
 		// get the current hibernate session
